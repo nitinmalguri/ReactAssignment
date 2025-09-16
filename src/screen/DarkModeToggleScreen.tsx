@@ -1,11 +1,7 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Switch, StyleSheet } from 'react-native';
 
-// Context for dark mode
-export const DarkModeContext = createContext({
-  darkMode: false,
-  setDarkMode: (val: boolean) => {},
-});
+import { DarkModeContext } from '../DarkModeContext';
 
 const DarkModeToggleScreen = () => {
   const { darkMode, setDarkMode } = useContext(DarkModeContext);

@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { DarkModeContext } from '../DarkModeContext';
 
 const TimerScreen = () => {
   const [seconds, setSeconds] = useState(0);
   const intervalRef = useRef<any>(null);
+  const { darkMode } = useContext(DarkModeContext);
+  const themedStyles = getThemedStyles(darkMode);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
@@ -16,30 +19,32 @@ const TimerScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.label}>Elapsed Time:</Text>
-      <Text style={styles.time}>{seconds} s</Text>
+    <SafeAreaView style={themedStyles.container}>
+      <Text style={themedStyles.label}>Elapsed Time:</Text>
+      <Text style={themedStyles.time}>{seconds} s</Text>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  label: {
-    fontSize: 20,
-    color: '#333',
-    marginBottom: 10,
-  },
-  time: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#007AFF',
-  },
-});
+
+const getThemedStyles = (darkMode: boolean) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: darkMode ? '#181A20' : '#fff',
+    },
+    label: {
+      fontSize: 20,
+      color: darkMode ? '#fff' : '#333',
+      marginBottom: 10,
+    },
+    time: {
+      fontSize: 48,
+      fontWeight: 'bold',
+      color: darkMode ? '#4F8EF7' : '#007AFF',
+    },
+  });
 
 export default TimerScreen;
