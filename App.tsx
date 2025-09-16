@@ -5,7 +5,9 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
+import React, { useState } from 'react';
+import OptionList from './src/OptionList';
+import CounterScreen from './src/screen/CounterScreen';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
@@ -24,14 +26,21 @@ function App() {
 }
 
 function AppContent() {
+  const [screen, setScreen] = useState<'list' | 'counter'>('list');
   const safeAreaInsets = useSafeAreaInsets();
 
+  if (screen === 'counter') {
+    return (
+      <View style={styles.container}>
+        <CounterScreen onBack={() => setScreen('list')} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      <OptionList onSelect={option => {
+        if (option === 'Counter') setScreen('counter');
+      }} />
     </View>
   );
 }
