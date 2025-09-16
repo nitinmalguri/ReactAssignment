@@ -7,9 +7,11 @@ const options = [
   { key: 'Greeting' },
   { key: 'Toggle' },
   { key: 'Timer' },
-  { key: 'Input' },
+  { key: 'Input Handling' },
   { key: 'Todo' },
   { key: 'Responsive Card Grid' },
+  { key: 'Memoized Component' },
+  { key: 'Fetch Users' },
   { key: 'Dark Mode Toggle' },
 ];
 

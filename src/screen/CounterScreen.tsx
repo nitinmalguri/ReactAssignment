@@ -12,12 +12,6 @@ const CounterScreen = ({ onBack }: CounterScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container} edges={["top","left","right"]}>
-      <TouchableOpacity
-        style={[styles.backButton, { top: insets.top ? insets.top + 8 : 20 }]}
-        onPress={onBack}
-      >
-        <Text style={styles.backButtonText}>{'< Back'}</Text>
-      </TouchableOpacity>
       <Text style={styles.count}>{count}</Text>
       <View style={styles.buttonRow}>
         <TouchableOpacity style={styles.button} onPress={() => setCount(count - 1)}>
